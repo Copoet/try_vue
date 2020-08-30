@@ -56,11 +56,11 @@ export default {
         });
       } else {
         let data = {
-          username: this.username,
+          name: this.username,
           password: this.pass
         };
         api.login(data).then(res => {
-          if (res.data.code == 200) {
+          if (res.data.code == 2000) {
             if (window.localStorage) {
               localStorage.setItem("token", JSON.stringify(res.data.list));
             } else {

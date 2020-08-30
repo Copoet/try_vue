@@ -6,8 +6,8 @@ export default {
       url: '/login',
       method: 'post',
       data: {
-        name:param.username,
-        pass:param.password
+        name:param.name,
+        password:param.password
       }
     })
   }
