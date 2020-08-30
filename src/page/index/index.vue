@@ -1,7 +1,7 @@
 <template lang="html">
   <div class="home-main">
    <el-row :gutter="10">
-      <el-col :span="8">
+      <!-- <el-col :span="8">
         <el-row :gutter="10">
           <el-col :span="24">
           <login-history></login-history>
@@ -10,8 +10,8 @@
             <main-table></main-table>
           </el-col>
         </el-row>
-      </el-col>
-      <el-col :span="16">
+      </el-col> -->
+      <el-col :span="24">
           <count-list :startVal="2000"
                       iconType="icon-pushpin"
                       color="#2f96b4"
@@ -32,33 +32,36 @@
                       color="#F56C6C"
                       intro-text="服务调用">
           </count-list>
-          <el-col :span="24" class="tab-main">
-           <tab-main></tab-main>
-          </el-col>
       </el-col>
    </el-row>
    <el-row :gutter="10" class="chart-main" >
-     <el-col :span="8" >
+     <el-col :span="12" >
        <div class="box-card">
           <gauge-chart></gauge-chart>
        </div>
      </el-col>
-     <el-col :span="8">
+     <el-col :span="12">
        <div class="box-card">
           <pie-chart></pie-chart>
        </div>
      </el-col>
-     <el-col :span="8">
+     <el-col :span="24" class="tab-main">
        <div class="box-card">
           <bar-chart></bar-chart>
        </div>
      </el-col>
+     <el-col :span="24" class="tab-main">
+           <div class="box-card ">
+           <tab-main></tab-main>
+           </div>
+          </el-col>
+    </el-row>
      <el-col :span="24">
        <div class="box-card map-box">
           <map-chart></map-chart>
         </div>
      </el-col>
-    </el-row>
+     
   </div>
 </template>
 <script>

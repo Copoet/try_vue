@@ -1,5 +1,5 @@
 <template>
-<div id="barChart" :style="{width: '380px', height: '400px'}"></div>
+<div id="barChart" :style="{width: '1000px', height: '400px'}"></div>
 </template>
 <script>
 import echarts from 'echarts'

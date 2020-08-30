@@ -1,165 +1,203 @@
 <template>
-<el-container>
-  <div id="menu">
-    <el-menu default-active="menu" router class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose" :collapse="isCollapse" background-color="#2E363F" text-color="#fff" active-text-color="#ffd04b">
-      <div class="header-box">
-        <span class="heder-img" v-show="isShow">
-           <img alt="users-images" class="img-circle" src="@/assets/images/users.jpg"/>
-         </span>
-      </div>
-      <el-submenu v-for="menu in menuList" :index="menu.id" :key="menu.id">
-        <template slot="title">
+  <el-container>
+    <div id="menu">
+      <el-menu
+        default-active="menu"
+        router
+        class="el-menu-vertical-demo"
+        @open="handleOpen"
+        @close="handleClose"
+        :collapse="isCollapse"
+        background-color="#000000"
+        text-color="#fff"
+        active-text-color="#ffd04b"
+      >
+        <div class="header-box">
+          <span class="heder-img" v-show="isShow">
+            <img alt="users-images" class="img-circle" src="@/assets/images/users.jpg" />
+          </span>
+        </div>
+        <el-submenu v-for="menu in menuList" :index="menu.id" :key="menu.id">
+          <template slot="title">
             <i class="el-icon-location"></i>
             <span>{{menu.title}}</span>
-        </template>
-        <el-submenu v-if="menu.childArr" v-for="item in menu.childArr" :index="item.id" :key="item.id">
-          <span slot="title">
-            <i class="el-icon-edit"></i>
-            {{item.title}}
-          </span>
-          <el-menu-item v-if="item.childArr" v-for="items in item.childArr" :index="items.id" :key="items.id">
-            <i class="el-icon-edit"></i> {{items.title}}
-          </el-menu-item>
-        </el-submenu>
-      </el-submenu>
-    </el-menu>
-  </div>
-  <el-container>
-    <el-header>
-      <el-row class="navbar-top">
-        <el-breadcrumb separator-class="el-icon-arrow-right">
-          <el-col :span="8">
-            <div class="close-btn" v-model="isCollapse" @click="show()" :class="{'on-choose':this.isCollapse}">
-              <i class="icon-reorder"></i>
-            </div>
-            <div class="navbar-tips">
-              <el-breadcrumb-item :to="{ path: '/home/' }">主页</el-breadcrumb-item>
-              <el-breadcrumb-item>时间轴</el-breadcrumb-item>
-            </div>
-          </el-col>
-          <el-col :span="12">
-            <div class="navbar-msg">
-              <ul>
-                <li>
-                  <el-tooltip class="item" effect="dark" content="未读邮件信息3条" placement="top-end">
-                      <i class="el-icon-message"></i>
-                  </el-tooltip>
-                </li>
-                <li>
-                  <el-tooltip class="item" effect="dark" content="通知消息4条" placement="bottom-end">
-                      <i class="el-icon-bell"></i>
-                  </el-tooltip>
-                </li>
-                <li>
-                  <el-tooltip class="item" effect="dark" content="未读服务消息3条" placement="bottom-end" >
-                      <i class="el-icon-service"></i>
-                  </el-tooltip>
-                </li>
-              </ul>
-            </div>
-          </el-col>
-          <el-col :span="4">
-            <el-dropdown @command="signOut">
-              <span class="el-dropdown-link">
-              <img alt="users-images" class="img-circle" src="@/assets/images/users.jpg" />
-              <i class="el-icon-arrow-down el-icon--right"></i>
+          </template>
+          <el-submenu
+            v-if="menu.childArr"
+            v-for="item in menu.childArr"
+            :index="item.id"
+            :key="item.id"
+          >
+            <span slot="title">
+              <i class="el-icon-edit"></i>
+              {{item.title}}
             </span>
-              <el-dropdown-menu size="small" slot="dropdown">
-                <el-dropdown-item command="logout">SignOut</el-dropdown-item>
-              </el-dropdown-menu>
-            </el-dropdown>
-          </el-col>
-        </el-breadcrumb>
-      </el-row>
-    </el-header>
-    <el-main>
-      <router-view></router-view>
-    </el-main>
-    <el-footer>
-      <public-footer></public-footer>
-    </el-footer>
+            <el-menu-item
+              v-if="item.childArr"
+              v-for="items in item.childArr"
+              :index="items.id"
+              :key="items.id"
+            >
+              <i class="el-icon-edit"></i>
+              {{items.title}}
+            </el-menu-item>
+          </el-submenu>
+        </el-submenu>
+      </el-menu>
+    </div>
+    <el-container>
+      <el-header>
+        <el-row class="navbar-top">
+          <el-breadcrumb separator-class="el-icon-arrow-right">
+            <el-col :span="8">
+              <div
+                class="close-btn"
+                v-model="isCollapse"
+                @click="show()"
+                :class="{'on-choose':this.isCollapse}"
+              >
+                <i class="icon-reorder"></i>
+              </div>
+              <div class="navbar-tips">
+                <el-breadcrumb-item :to="{ path: '/home/' }">主页</el-breadcrumb-item>
+                <el-breadcrumb-item>时间轴</el-breadcrumb-item>
+              </div>
+            </el-col>
+            <el-col :span="12">
+              <div class="navbar-msg">
+                <ul>
+                  <li>
+                    <el-tooltip class="item" effect="dark" content="未读邮件信息3条" placement="top-end">
+                      <i class="el-icon-message"></i>
+                    </el-tooltip>
+                  </li>
+                  <li>
+                    <el-tooltip class="item" effect="dark" content="通知消息4条" placement="bottom-end">
+                      <i class="el-icon-bell"></i>
+                    </el-tooltip>
+                  </li>
+                  <li>
+                    <el-tooltip
+                      class="item"
+                      effect="dark"
+                      content="未读服务消息3条"
+                      placement="bottom-end"
+                    >
+                      <i class="el-icon-service"></i>
+                    </el-tooltip>
+                  </li>
+                </ul>
+              </div>
+            </el-col>
+            <el-col :span="4">
+              <el-dropdown @command="signOut">
+                <span class="el-dropdown-link">
+                  <img alt="users-images" class="img-circle" src="@/assets/images/users.jpg" />
+                  <i class="el-icon-arrow-down el-icon--right"></i>
+                </span>
+                <el-dropdown-menu size="small" slot="dropdown">
+                  <el-dropdown-item command="logout">SignOut</el-dropdown-item>
+                </el-dropdown-menu>
+              </el-dropdown>
+            </el-col>
+          </el-breadcrumb>
+        </el-row>
+      </el-header>
+      <el-main>
+        <router-view></router-view>
+      </el-main>
+      <el-footer>
+        <public-footer></public-footer>
+      </el-footer>
+    </el-container>
   </el-container>
-</el-container>
 </template>
 <script>
-import publicFooter from '@/components/footer/footer'
+import publicFooter from "@/components/footer/footer";
 export default {
   data() {
     return {
       isCollapse: false,
       isShow: true,
-      menuList: [{
-          "id": "1",
-          "title": "系统管理",
-          "childArr": [{
-            "id": "1-1",
-            "title": "系统管理",
-            "childArr": [{
-                "id": "/home/forms",
-                "title": "表单组件"
-              },
-              {
-                "id": "/home/table",
-                "title": "表格组件"
-              },
-              {
-                "id": "/home/mkedit",
-                "title": "MK编辑器"
-              },
-              {
-                "id": "/home/dialogs",
-                "title": "对话框"
-              },
-            ]
-          }]
+      menuList: [
+        {
+          id: "1",
+          title: "系统管理",
+          childArr: [
+            {
+              id: "1-1",
+              title: "系统管理",
+              childArr: [
+                {
+                  id: "/home/forms",
+                  title: "表单组件"
+                },
+                {
+                  id: "/home/table",
+                  title: "表格组件"
+                },
+                {
+                  id: "/home/mkedit",
+                  title: "MK编辑器"
+                },
+                {
+                  id: "/home/dialogs",
+                  title: "对话框"
+                }
+              ]
+            }
+          ]
         },
         {
-          "id": "3",
-          "title": "内容管理",
-          "childArr": [{
-            "id": "3-1",
-            "title": "表单列表"
-          }, {
-            "id": "3-2",
-            "title": "文章发布"
-          }]
-        },
+          id: "3",
+          title: "内容管理",
+          childArr: [
+            {
+              id: "3-1",
+              title: "表单列表"
+            },
+            {
+              id: "3-2",
+              title: "文章发布"
+            }
+          ]
+        }
       ]
-    }
+    };
   },
   components: {
-    publicFooter,
+    publicFooter
   },
   methods: {
     handleOpen(key, keyPath) {
       var x = 2;
-      console.log(x)
-      console.log(key, keyPath)
+      console.log(x);
+      console.log(key, keyPath);
     },
     handleClose(key, keyPath) {
-      console.log(key, keyPath)
+      console.log(key, keyPath);
     },
     show() {
       this.isCollapse = !this.isCollapse;
       this.isShow = !this.isCollapse;
     },
     signOut(command) {
-      if (command == 'logout') {
-        localStorage.removeItem('token');
-        var userToken = localStorage.getItem('token');
+      if (command == "logout") {
+        localStorage.removeItem("token");
+        var userToken = localStorage.getItem("token");
         if (userToken == null) {
           this.$notify.success({
-            title: 'success',
-            message: '退出成功',
-          })
-          this.$router.replace('/login')
+            title: "success",
+            message: "退出成功"
+          });
+          this.$router.replace("/login");
         }
       } else {
-        this.$router.replace('/home')
+        this.$router.replace("/home");
       }
     }
   }
-}
+};
 </script>
 <style scoped>
 .el-container {
@@ -183,12 +221,12 @@ export default {
 /**menu */
 
 #menu {
-  height: 1800px;
-  background: #2E363F;
+  height: 2200px;
+  background: #000000;
 }
 
 .el-menu {
-  background: #2E363F;
+  background: #2e363f;
   border-right: none;
 }
 
@@ -232,7 +270,6 @@ export default {
   line-height: 10px;
   padding-bottom: 12px;
   padding-left: 12px;
-
 }
 
 .navbar-top {
@@ -275,10 +312,10 @@ export default {
   display: block;
   float: right;
   font-size: 22px;
-  color: #409EFF;
+  color: #409eff;
 }
 
-.navbar-msg>ul li {
+.navbar-msg > ul li {
   float: right;
   list-style: none;
   margin-left: 26px;

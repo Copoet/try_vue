@@ -1,10 +1,10 @@
 <template>
   <div class="right-footer">
     <div class="pull-right">
-      By：<a href="" target="_blank">One</a>
+      <!-- By：<a href="" target="_blank">One is all</a> -->
     </div>
     <div>
-      <strong>Copyright</strong> One &copy; 2018
+      <strong>Copyright</strong> zero to one; 2020
     </div>
   </div>
 </template>
